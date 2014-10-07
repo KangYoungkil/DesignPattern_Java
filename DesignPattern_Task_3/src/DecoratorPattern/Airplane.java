@@ -1,4 +1,8 @@
 package DecoratorPattern;
 public abstract class Airplane {
-	public abstract String attack();
+	String description = "Unknown Attack";
+	public String attack()
+	{
+		return description;
+	}
 }
