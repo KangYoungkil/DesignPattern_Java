@@ -1,6 +1,6 @@
 package DecoratorPattern;
 
-public class SideAttackAirplane extends AirplaneDecorator{
+class SideAttackAirplane extends AirplaneDecorator{
 	public String attack() {
 		return airplane.attack() + ", SideAttack";
 	}

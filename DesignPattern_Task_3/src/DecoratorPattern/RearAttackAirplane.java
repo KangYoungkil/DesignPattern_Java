@@ -1,5 +1,5 @@
 package DecoratorPattern;
-public class RearAttackAirplane extends AirplaneDecorator{
+class RearAttackAirplane extends AirplaneDecorator{
 	public String attack() {
 		return airplane.attack() + ", RearAttack";
 	}
