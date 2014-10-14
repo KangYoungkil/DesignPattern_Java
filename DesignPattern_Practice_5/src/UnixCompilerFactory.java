@@ -1,17 +1,23 @@
-public class UnixCompilerFactory extends CompilerFactory{
-	
-	
+//UnixCompilerFactory.java
+public class UnixCompilerFactory extends CompilerFactory {
+	public UnixCompilerFactory() {
+		s = createScanner();
+		p = createParser();
+		c = createCodeGenerator();
+		s.scan();
+		p.parse();
+		c.codegenrate();
+	}
+
 	Scanner createScanner() {
 		return new UnixScanner();
 	}
 
 	Parser createParser() {
-		// TODO Auto-generated method stub
 		return new UnixParser();
 	}
 
 	CodeGenerator createCodeGenerator() {
-		// TODO Auto-generated method stub
 		return new UnixCodeGenerator();
 	}
 }

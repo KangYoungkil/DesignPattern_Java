@@ -1,25 +1,25 @@
-
-public class LinuxCompilerFactory extends CompilerFactory{
+//LinuxCompilerFactory.java
+public class LinuxCompilerFactory extends CompilerFactory {
 
 	public LinuxCompilerFactory() {
 		// TODO Auto-generated constructor stub
 		s = createScanner();
 		p = createParser();
 		c = createCodeGenerator();
+		s.scan();
+		p.parse();
+		c.codegenrate();
 	}
+
 	Scanner createScanner() {
-		// TODO Auto-generated method stub
 		return new LinuxScanner();
 	}
 
 	Parser createParser() {
-		// TODO Auto-generated method stub
 		return new LinuxParser();
 	}
 
 	CodeGenerator createCodeGenerator() {
-		// TODO Auto-generated method stub
 		return new LinuxCodeGenerator();
 	}
-
 }
