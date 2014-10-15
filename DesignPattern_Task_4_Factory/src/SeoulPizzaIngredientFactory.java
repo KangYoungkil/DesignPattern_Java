@@ -1,3 +1,4 @@
+//SeoulPizzaIngredientFactory.java
 public class SeoulPizzaIngredientFactory implements PizzaIngredientFactory {
 	public Dough createDough() {
 		return new ThinCrustDough();

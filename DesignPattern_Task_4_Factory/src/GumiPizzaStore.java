@@ -1,3 +1,4 @@
+//GumiPizzaStore.java
 public class GumiPizzaStore extends PizzaStore {
 	protected Pizza createPizza(String item) {
 		Pizza pizza = null;

@@ -1,3 +1,4 @@
+//DaeguPizzaStore.java
 public class DaeguPizzaStore extends PizzaStore {
 	protected Pizza createPizza(String item) {
 		Pizza pizza = null;

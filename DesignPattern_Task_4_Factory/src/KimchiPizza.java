@@ -1,3 +1,4 @@
+//KimchiPizza.java
 public class KimchiPizza extends Pizza {
 	PizzaIngredientFactory ingredientFactory;
 	public KimchiPizza(PizzaIngredientFactory pf) {
