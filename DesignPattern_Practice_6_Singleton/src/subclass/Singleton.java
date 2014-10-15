@@ -1,9 +1,11 @@
 package subclass;
-public class Singleton {
+
+public class Singleton implements Runnable {
 	protected static Singleton uniqueInstance;
 
 	// other useful instance variables here
 	protected Singleton() {
+		System.out.println("Subclass Singleton");
 	}
 
 	public static synchronized Singleton getInstance() {
@@ -12,9 +14,11 @@ public class Singleton {
 		}
 		return uniqueInstance;
 	}
+
 	// other useful methods here
-	public void display()
-	{
-		System.out.println("Subclass Singleton");
+	public void run() {
+		try {getInstance();}
+		catch (Exception e) {}
 	}
+
 }
