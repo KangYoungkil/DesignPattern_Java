@@ -1,8 +1,11 @@
-public class DinerMenu implements Menu {
+public class DinerMenu implements Menu
+{
 	MenuItem[] menuItems;
 	static final int MAX_ITEMS = 6;
 	int numberOfItems = 0;
-	public DinerMenu() {
+
+	public DinerMenu()
+	{
 		menuItems = new MenuItem[MAX_ITEMS];
 		addItem("채식주의자용  BLT", "통밀 위에(식물성)베이컨, 상추, 토마토를 얹은 메뉴", true, 2.99);
 		addItem("BLT", "통밀 위에 베이컨, 상추, 토마토를 얹은 메뉴", false, 2.99);
@@ -12,21 +15,27 @@ public class DinerMenu implements Menu {
 	}
 
 	public void addItem(String name, String description, boolean vegetarian,
-			double price) {
-		if (numberOfItems < MAX_ITEMS) {
+			double price)
+	{
+		if (numberOfItems < MAX_ITEMS)
+		{
 			menuItems[numberOfItems] = new MenuItem(name, description,
 					vegetarian, price);
 			numberOfItems++;
-		} else {
+		}
+		else
+		{
 			System.out.println("죄송합니다, 메뉴가 꽉 찼습니다. 더 이상 추가할 수 없습니다.");
 		}
 	}
 
-	public MenuItem[] getMenuItems() {
+	public MenuItem[] getMenuItems()
+	{
 		return menuItems;
 	}
 
-	public Iterator createIterator() {
-		return new DinerMenuIterator(menuItems);
+	public Iterator createIterator()
+	{
+		return new DinerMenuIterator(menuItems, numberOfItems);
 	}
 }

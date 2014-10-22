@@ -1,8 +1,11 @@
 public class DinerMenuIterator implements Iterator {
 	MenuItem[] items;
 	int pos = 0;
+	int numberOfItems;
 
-	public DinerMenuIterator(MenuItem[] items) {
+	public DinerMenuIterator(MenuItem[] items, int numberOfItems)
+	{
+		this.numberOfItems = numberOfItems;
 		this.items = items;
 	}
 
@@ -13,7 +16,8 @@ public class DinerMenuIterator implements Iterator {
 	}
 
 	public boolean hasNext() {
-		if (pos >= items.length) {
+		if (pos >= numberOfItems)
+		{
 			return false;
 		} else {
 			return true;
