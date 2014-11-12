@@ -1,28 +1,35 @@
-public class NoQuarterState implements State {
-	GumballMachine gumballMachine;
+public class NoQuarterState implements State
+{
+	transient GumballMachine gm;
 
-	public NoQuarterState(GumballMachine gumballMachine) {
-		this.gumballMachine = gumballMachine;
+	public NoQuarterState(GumballMachine gm)
+	{
+		this.gm = gm;
 	}
 
-	public void insertQuarter() {
-		System.out.println("동전을 넣었습니다.");
-		gumballMachine.setState(gumballMachine.getHasQuarterState());
+	public void insertQuarter()
+	{
+		if ((gm.getNum_op()) % 10 == 0) gm.setState(gm.getWinnerState());
+		else gm.setState(gm.getHasQuarterState()); // context's state transition
 	}
 
-	public void ejectQuarter() {
-		System.out.println("동전을 넣지 않았습니다.");
+	public void enjectQuarter()
+	{
+		System.out.println("You haven't inserted a quarter");
 	}
 
-	public void turnCrank() {
-		System.out.println("동전을 넣어주세요.");
+	public void turnCrank()
+	{
+		System.out.println("You turned, but there's no quarter");
 	}
 
-	public void dispense() {
-		System.out.println("동전을 넣어주세요");
+	public void dispense()
+	{
+		System.out.println("You need to pay first");
 	}
 
-	public String toString() {
+	public String toString_()
+	{
 		return "waiting for quarter";
 	}
 }

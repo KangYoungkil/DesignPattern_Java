@@ -1,28 +1,34 @@
-public class SoldOutState implements State {
+public class SoldOutState implements State
+{
+	transient GumballMachine gm;
 
-	GumballMachine gumballMachine;
-
-	public SoldOutState(GumballMachine gumballMachine) {
-		this.gumballMachine = gumballMachine;
+	public SoldOutState(GumballMachine gm)
+	{
+		this.gm = gm;
 	}
 
-	public void insertQuarter() {
-		System.out.println("동전을 넣을 수 없습니다. 상품이 모두 판매 된 상태입니다.");
+	public void insertQuarter()
+	{
+		System.out.println("state is sold out");
 	}
 
-	public void ejectQuarter() {
-		System.out.println("동전을 넣지 않은 상태입니다.");
+	public void enjectQuarter()
+	{
+		System.out.println("state is sold out");
 	}
 
-	public void turnCrank() {
-		System.out.println("손잡이를 돌렸지만 상품이 없습니다.");
+	public void turnCrank()
+	{
+		System.out.println("state is sold out");
 	}
 
-	public void dispense() {
-		System.out.println("알맹이가 나갈 수 없습니다.");
+	public void dispense()
+	{
+		System.out.println("state is sold out");
 	}
 
-	public String toString() {
+	public String toString_()
+	{
 		return "sold out";
 	}
 }

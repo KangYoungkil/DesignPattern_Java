@@ -1,97 +1,112 @@
-public class GumballMachine {
-	State soldOutState;
-	State noQuarterState;
-	State hasQuarterState;
-	State soldState;
-	State winnerState;
+import java.rmi.RemoteException;
+import java.rmi.server.UnicastRemoteObject;
 
-	State state = soldOutState;
-	int count = 0;
+public class GumballMachine extends UnicastRemoteObject implements
+		GumballMachineRemote
+{
+	int count;// 볼 갯수
+	int num_op = 1;// 볼을 빼낸 횟수
+
+	State hqs;
+	State nqs;
+	State sos;
+	State ss;
+	State ws;
+
+	State state;
 	String location;
 
-	public GumballMachine(String location, int count) {
-		soldOutState = new SoldOutState(this);
-		noQuarterState = new NoQuarterState(this);
-		hasQuarterState = new HasQuarterState(this);
-		soldState = new SoldState(this);
-		winnerState = new WinnerState(this);
-
+	protected GumballMachine(String location, int count) throws RemoteException
+	{
+		super();
 		this.count = count;
-		if (count > 0) {
-			state = noQuarterState;
-		}
 		this.location = location;
+		hqs = new HasQuarterState(this);
+		nqs = new NoQuarterState(this);
+		sos = new SoldOutState(this);
+		ss = new SoldState(this);
+		ws = new WinnerState(this);
+		state = nqs;
 	}
 
-	public void insertQuarter() {
-		state.insertQuarter();
-	}
-
-	public void ejectQuarter() {
-		state.ejectQuarter();
-	}
-
-	public void turnCrank() {
-		state.turnCrank();
-		state.dispense();
-	}
-
-	void setState(State state) {
-		this.state = state;
-	}
-
-	void releaseBall() {
-		System.out.println("A gumball comes rolling out the slot...");
-		if (count != 0) {
-			count = count - 1;
-		}
-	}
-
-	public int getCount() {
+	public int getCount() throws RemoteException
+	{
 		return count;
 	}
 
-	public void refill(int count) {
-		this.count = count;
-		state = noQuarterState;
+	public void setCount(int c)
+	{
+		this.count = c;
 	}
 
-	public State getState() {
-		return state;
+	public int getNum_op()
+	{
+		return num_op;
 	}
 
-	public String getLocation() {
+	public void setNum_op(int num)
+	{
+		this.num_op = num;
+	}
+
+	public String getLocation() throws RemoteException
+	{
 		return location;
 	}
 
-	public State getSoldOutState() {
-		return soldOutState;
+	public State getState() throws RemoteException
+	{
+		return state;
 	}
 
-	public State getNoQuarterState() {
-		return noQuarterState;
+	public void setState(State state)
+	{
+		this.state = state;
 	}
 
-	public State getHasQuarterState() {
-		return hasQuarterState;
+	public State getHasQuarterState()
+	{
+		return hqs;
 	}
 
-	public State getSoldState() {
-		return soldState;
+	public State getNoQuarterState()
+	{
+		return nqs;
 	}
 
-	public State getWinnerState() {
-		return winnerState;
+	public State getSoldOutState()
+	{
+		return sos;
 	}
 
-	public String toString() {
-		StringBuffer result = new StringBuffer();
-		result.append("\n주식회사 사행성 왕뽑기");
-		result.append("\n자바를 장착한 2013년형 뽑기기계");
-		result.append("\n남은 개수 : " + count + "개");
+	public State getSoldState()
+	{
+		return ss;
+	}
 
-		result.append("\n");
-		result.append("Machine is " + state + "\n");
-		return result.toString();
+	public State getWinnerState()
+	{
+		return ws;
+	}
+
+	public void insertCoin()
+	{
+		state.insertQuarter();
+	}
+
+	public void ejectCoing()
+	{
+		state.enjectQuarter();
+	}
+
+	public void turnCrank() throws RemoteException
+	{
+		if (count == 0)
+		{
+			System.out.println("No Ball");
+			state = sos;
+		}
+		state.turnCrank();
+		System.out.println("number of Balls is " + count);
 	}
 }

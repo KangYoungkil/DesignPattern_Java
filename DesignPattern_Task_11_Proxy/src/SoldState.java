@@ -1,34 +1,38 @@
-public class SoldState implements State {
+public class SoldState implements State
+{
+	transient GumballMachine gm;
 
-	GumballMachine gumballMachine;
-
-	public SoldState(GumballMachine gumballMachine) {
-		this.gumballMachine = gumballMachine;
+	public SoldState(GumballMachine gm)
+	{
+		this.gm = gm;
 	}
 
-	public void insertQuarter() {
-		System.out.println("기다려주세요, 이미 알맹이 드렸습니다.");
+	public void insertQuarter()
+	{
+		if ((gm.getNum_op()) % 10 == 0) gm.setState(gm.getWinnerState());
+		else gm.setState(gm.getHasQuarterState());
 	}
 
-	public void ejectQuarter() {
-		System.out.println("이미 돌린 상태입니다.");
+	public void enjectQuarter()
+	{
+		System.out.println("동전을 넣어주세요");
+		gm.setState(gm.getNoQuarterState());
 	}
 
-	public void turnCrank() {
-		System.out.println("2번 돌려도 한개 더 못 받습니다.");
+	public void turnCrank()
+	{
+		System.out.println("동전을 넣어주세요");
+		gm.setState(gm.getNoQuarterState());
 	}
 
-	public void dispense() {
-		gumballMachine.releaseBall();
-		if (gumballMachine.getCount() > 0) {
-			gumballMachine.setState(gumballMachine.getNoQuarterState());
-		} else {
-			System.out.println("매진 되었습니다.");
-			gumballMachine.setState(gumballMachine.getSoldOutState());
-		}
+	public void dispense()
+	{
+		System.out.println("동전을 넣어주세요");
+		gm.setState(gm.getNoQuarterState());
 	}
 
-	public String toString() {
-		return "dispensing a gumball";
+	public String toString_()
+	{
+		return "sold";
 	}
 }

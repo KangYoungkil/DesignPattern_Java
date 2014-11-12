@@ -1,13 +1,25 @@
-public class GumballMonitor {
-	GumballMachine machine;
+import java.rmi.RemoteException;
 
-	public GumballMonitor(GumballMachine machine) {
+public class GumballMonitor
+{
+	GumballMachineRemote machine;
+
+	public GumballMonitor(GumballMachineRemote machine)
+	{
 		this.machine = machine;
 	}
 
-	public void report() {
-		System.out.println("뽑기 기계: " + machine.getLocation());
-		System.out.println("현재 남은 개수 : " + machine.getCount() + " gumballs");
-		System.out.println("현재 상태 : " + machine.getState());
+	public void report()
+{
+		try
+		{
+			System.out.println("뽑기 기계 위치 : " + machine.getLocation());
+			System.out.println("현재 재고 : " + machine.getCount());
+			System.out.println("현재 상태 : " + machine.getState().toString_());
+		}
+		catch (RemoteException e)
+		{
+			e.printStackTrace();
+		}
 	}
 }

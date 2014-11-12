@@ -1,39 +1,38 @@
-public class WinnerState implements State {
-	GumballMachine gumballMachine;
+import java.rmi.RemoteException;
 
-	public WinnerState(GumballMachine gumballMachine) {
-		this.gumballMachine = gumballMachine;
+public class WinnerState implements State
+{
+	transient GumballMachine gm;
+
+	public WinnerState(GumballMachine gm)
+	{
+		this.gm = gm;
 	}
 
-	public void insertQuarter() {
-		System.out.println("기다려주세요, 이미 알맹이 드렸습니다.");
+	public void insertQuarter()
+	{
+		gm.setState(gm.getHasQuarterState());
 	}
 
-	public void ejectQuarter() {
-		System.out.println("기다려주세요, 이미 알맹이 드렸습니다.");
+	public void enjectQuarter()
+	{
+		System.out.println("You haven't inserted a quarter");
 	}
 
-	public void turnCrank() {
-		System.out.println("다시 돌려도 알맹이 더 못 드립니다.");
+	public void turnCrank() throws RemoteException
+{
+		System.out.println("Winner State!!!");
+		gm.setCount(gm.getCount() - 2);
+		gm.setNum_op(gm.getNum_op() + 1);
 	}
 
-	public void dispense() {
-		System.out.println("당첨 되서 2개 드립니다.");
-		gumballMachine.releaseBall();
-		if (gumballMachine.getCount() == 0) {
-			gumballMachine.setState(gumballMachine.getSoldOutState());
-		} else {
-			gumballMachine.releaseBall();
-			if (gumballMachine.getCount() > 0) {
-				gumballMachine.setState(gumballMachine.getNoQuarterState());
-			} else {
-				System.out.println("매진 되었습니다.");
-				gumballMachine.setState(gumballMachine.getSoldOutState());
-			}
-		}
+	public void dispense()
+	{
+		System.out.println("You need to pay first");
 	}
 
-	public String toString() {
-		return "despensing two gumballs for your quarter, because YOU'RE A WINNER!";
+	public String toString_()
+	{
+		return " Winner State";
 	}
 }
