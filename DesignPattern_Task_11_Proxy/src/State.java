@@ -3,12 +3,12 @@ import java.rmi.RemoteException;
 
 public interface State extends Serializable
 {
-public void insertQuarter();
+	public void insertQuarter();
 
 	public void enjectQuarter();
 
 	public void turnCrank() throws RemoteException;
-public void dispense();
 
-	public String toString_();
+	public void dispense();
+
 }

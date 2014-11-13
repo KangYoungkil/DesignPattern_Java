@@ -13,9 +13,10 @@ public class GumballMonitor
 {
 		try
 		{
-			System.out.println("뽑기 기계 위치 : " + machine.getLocation());
-			System.out.println("현재 재고 : " + machine.getCount());
-			System.out.println("현재 상태 : " + machine.getState().toString_());
+			System.out.println("Gumball Machine : " + machine.getLocation());
+			System.out.println("Current Inventory : " + machine.getCount());
+			System.out.println("Current State : "
+					+ machine.getState().toString());
 		}
 		catch (RemoteException e)
 		{

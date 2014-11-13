@@ -11,7 +11,7 @@ public class HasQuarterState implements State
 
 	public void insertQuarter()
 	{
-		System.out.println("이미 동전이 있습니다.");
+		System.out.println("You can't insert another quarter");
 	}
 
 	public void enjectQuarter()
@@ -38,8 +38,8 @@ public class HasQuarterState implements State
 		gm.setState(gm.getSoldState());
 	}
 
-	public String toString_()
+	public String toString()
 	{
-		return "has coin";
+		return "waiting for turn of crank";
 	}
 }

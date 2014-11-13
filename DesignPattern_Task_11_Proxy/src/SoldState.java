@@ -15,24 +15,24 @@ public class SoldState implements State
 
 	public void enjectQuarter()
 	{
-		System.out.println("동전을 넣어주세요");
+		System.out.println("Sorry, you already turned the crank");
 		gm.setState(gm.getNoQuarterState());
 	}
 
 	public void turnCrank()
 	{
-		System.out.println("동전을 넣어주세요");
+		System.out.println("Turning twice doesn't get you another gumball!");
 		gm.setState(gm.getNoQuarterState());
 	}
 
 	public void dispense()
 	{
-		System.out.println("동전을 넣어주세요");
+		System.out.println("Oops, out of gumballs!");
 		gm.setState(gm.getNoQuarterState());
 	}
 
-	public String toString_()
+	public String toString()
 	{
-		return "sold";
+		return "dispensing a gumball";
 	}
 }

@@ -10,7 +10,7 @@ public class NoQuarterState implements State
 	public void insertQuarter()
 	{
 		if ((gm.getNum_op()) % 10 == 0) gm.setState(gm.getWinnerState());
-		else gm.setState(gm.getHasQuarterState()); // context's state transition
+		else gm.setState(gm.getHasQuarterState());
 	}
 
 	public void enjectQuarter()
@@ -28,7 +28,7 @@ public class NoQuarterState implements State
 		System.out.println("You need to pay first");
 	}
 
-	public String toString_()
+	public String toString()
 	{
 		return "waiting for quarter";
 	}

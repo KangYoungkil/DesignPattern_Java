@@ -31,7 +31,7 @@ public class WinnerState implements State
 		System.out.println("You need to pay first");
 	}
 
-	public String toString_()
+	public String toString()
 	{
 		return " Winner State";
 	}

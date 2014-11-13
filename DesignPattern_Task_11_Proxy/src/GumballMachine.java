@@ -4,14 +4,13 @@ import java.rmi.server.UnicastRemoteObject;
 public class GumballMachine extends UnicastRemoteObject implements
 		GumballMachineRemote
 {
-	int count;// 볼 갯수
-	int num_op = 1;// 볼을 빼낸 횟수
-
-	State hqs;
-	State nqs;
-	State sos;
-	State ss;
-	State ws;
+	int count;
+	int num_op = 1;
+	State hasQuStateState;
+	State noQuarterState;
+	State soldOutState;
+	State soldState;
+	State winnerState;
 
 	State state;
 	String location;
@@ -21,12 +20,12 @@ public class GumballMachine extends UnicastRemoteObject implements
 		super();
 		this.count = count;
 		this.location = location;
-		hqs = new HasQuarterState(this);
-		nqs = new NoQuarterState(this);
-		sos = new SoldOutState(this);
-		ss = new SoldState(this);
-		ws = new WinnerState(this);
-		state = nqs;
+		hasQuStateState = new HasQuarterState(this);
+		noQuarterState = new NoQuarterState(this);
+		soldOutState = new SoldOutState(this);
+		soldState = new SoldState(this);
+		winnerState = new WinnerState(this);
+		state = noQuarterState;
 	}
 
 	public int getCount() throws RemoteException
@@ -66,27 +65,27 @@ public class GumballMachine extends UnicastRemoteObject implements
 
 	public State getHasQuarterState()
 	{
-		return hqs;
+		return hasQuStateState;
 	}
 
 	public State getNoQuarterState()
 	{
-		return nqs;
+		return noQuarterState;
 	}
 
 	public State getSoldOutState()
 	{
-		return sos;
+		return soldOutState;
 	}
 
 	public State getSoldState()
 	{
-		return ss;
+		return soldState;
 	}
 
 	public State getWinnerState()
 	{
-		return ws;
+		return winnerState;
 	}
 
 	public void insertCoin()
@@ -104,7 +103,7 @@ public class GumballMachine extends UnicastRemoteObject implements
 		if (count == 0)
 		{
 			System.out.println("No Ball");
-			state = sos;
+			state = soldOutState;
 		}
 		state.turnCrank();
 		System.out.println("number of Balls is " + count);
